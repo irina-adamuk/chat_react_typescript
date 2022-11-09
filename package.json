@@ -2,10 +2,13 @@
   "name": "chat_react_typescript",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://irina-adamuk.github.io/chat_react_typescript/",
   "scripts": {
     "start": "webpack serve --mode=development",
     "build": "webpack --mode=development",
-    "lint": "npx eslint ./src --ext .js,.jsx --fix"
+    "lint": "npx eslint ./src --ext .js,.jsx --fix",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -23,6 +26,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.7.1",
     "style-loader": "^3.3.1",
