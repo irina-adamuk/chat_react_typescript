@@ -2,35 +2,32 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devtool: 'eval-source-map',
   entry: path.resolve(__dirname, './src/index.jsx'),
+  module: {
+    rules: [
+      {
+        exclude: /node_modules/,
+        test: /\.css?$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        exclude: /node_modules/,
+        test: /\.jsx?$/,
+        use: ['babel-loader'],
+      },
+    ],
+  },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './build'),
   },
-  resolve: {
-    extensions: ['.jsx', '.js']
-  },
-  devtool: 'eval-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.css?$/i,
-        exclude: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ],
-      },
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
-    ]
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-    })
-  ]
-}
+    }),
+  ],
+  resolve: {
+    extensions: ['.jsx', '.js'],
+  },
+};
