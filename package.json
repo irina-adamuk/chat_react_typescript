@@ -9,6 +9,9 @@
     "lint": "npx eslint ./src --ext .js,.jsx --fix",
     "predeploy": "npm run -d build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static",
+    "loki:update": "npm run build-storybook && npx loki update --requireReference --reactUri file:./storybook-static",
+    "loki": "npm run build-storybook && npx loki --requireReference --reactUri file:./storybook-static",
+    "loki:approve": "npx loki approve",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -40,6 +43,7 @@
     "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^4.3.8",
+    "loki": "^0.30.3",
     "prettier": "^2.7.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.74.0",
@@ -50,6 +54,21 @@
     "hooks": {
       "pre-commit": "npm run lint",
       "pre-push": "npm run lint"
+    }
+  },
+  "loki": {
+    "configurations": {
+      "chrome.laptop": {
+        "target": "chrome.app",
+        "width": 1366,
+        "height": 768,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      },
+      "chrome.iphone7": {
+        "target": "chrome.app",
+        "preset": "iPhone 7"
+      }
     }
   }
 }
